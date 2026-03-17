@@ -1,0 +1,21 @@
+{
+  "name": "apple-inspired-ecommerceui-project",
+  "version": "1.0.0",
+  "description": "e-commerce UI with HTML, SCSS, Vite an JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "author": "Flavio Palacios",
+  "license": "MIT",
+  "devDependencies": {
+    "sass-embedded": "^1.98.0",
+    "scss": "^0.2.4",
+    "vite": "^8.0.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0"
+  }
+}
