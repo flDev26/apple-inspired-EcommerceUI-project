@@ -1,3 +1,7 @@
+// MAIN JAVASCRIPT LOGIC
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
 // 1. MODULE USE: We are "importing" data from another file. 
 // This keeps this file clean and lets us reuse the 'products' list elsewhere.
 import { products } from '../data/products.js';
@@ -23,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function renderProducts(products) {
         productListElement.innerHTML = ''; // Clear existing content
 
-        // 5. ARROW FUNCTIONS: '(product => { ... })' is a modern, sleek way to write functions.
+        // 5. ARROW FUNCTIONS: '(product => { ... })' the modern, sleek way to write functions.
         // We are looping through every product in our list.
         products.forEach(product => {
             const productElement = document.createElement('div');
