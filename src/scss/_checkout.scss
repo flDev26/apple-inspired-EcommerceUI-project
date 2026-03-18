@@ -1,0 +1,76 @@
+// CHECKOUT STYLING
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+// Note for my future self. This was your first time using SCSS. 
+// Use the commentary here in case you forget details.
+
+// 1. THE PARENT CONTAINER: Everything inside these braces is 
+// scoped to the checkout area. It’s like a "style-bubble" for your cart.
+.checkout {
+  margin: 2rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #ccc;
+
+  // 2. ELEMENT NESTING: The "&" grabs the ".checkout" name.
+  // This compiles to ".checkout__title" in standard CSS.
+  &__title {
+    margin-bottom: 1rem;
+  }
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  // 3. COMBO-NESTING: SCSS lets you apply the same styles to two things at once!
+  // This targets BOTH .checkout__increase-btn AND .checkout__decrease-btn.
+  &__increase-btn,
+  &__decrease-btn {
+    margin-left: 10px;
+    padding: 0.2rem 0.5rem;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    // 4. INTERACTION STATE: Tucked right inside the button style.
+    // It says: "Only change the color when THIS specific button is hovered."
+    &:hover {
+      background: #0056b3;
+    }
+  }
+
+  &__total {
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+
+  &__proceed {
+    margin-top: 1rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background: #218838;
+    }
+  }
+}
+
+// 5. SEPARATE SCOPE: This is a different block entirely for the success page.
+// Using SCSS here ensures success styles don't accidentally leak into the main checkout.
+.checkout-success {
+  
+  // Here, "&" represents ".checkout-success"
+  &__title {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+  }
+
+  &__message {
+    margin-top: 0.5rem;
+  }
+}
