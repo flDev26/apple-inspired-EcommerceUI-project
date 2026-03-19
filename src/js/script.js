@@ -2,19 +2,19 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 
-// 1. MODULE USE: We are "importing" data from another file. 
+// MODULE USE: We are "importing" data from another file. 
 // This keeps this file clean and lets us reuse the 'products' list elsewhere.
 import { products } from '../data/products.js';
 
-// 2. EVENT LITERAL: "DOMContentLoaded" is a built-in browser event.
+// EVENT LITERAL: "DOMContentLoaded" is a built-in browser event.
 // It ensures the code doesn't run until the HTML is fully finished loading.
 document.addEventListener("DOMContentLoaded", function () {
     
-    // 3. DATA STRUCTURES: 'cart' is an Array, and we're using JSON.parse 
+    // DATA STRUCTURES: 'cart' is an Array, and we're using JSON.parse 
     // to turn a string from storage back into a usable Javascript Object.
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    // 4. DOM ELEMENTS: 'document.querySelector' is like a magnet. 
+    // DOM ELEMENTS: 'document.querySelector' is like a magnet. 
     // It finds the HTML elements so JS can talk to them.
     const checkoutCountElement = document.querySelector(".header__checkout-count");
     const cartPreviewElement = document.querySelector(".header__cart-preview");
@@ -23,18 +23,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const productListElement = document.querySelector('.store__product-list');
     const toastContainer = document.querySelector('.toast-container');
 
-    // Function to render products
+    // FUNCTION to render products
     function renderProducts(products) {
         productListElement.innerHTML = ''; // Clear existing content
 
-        // 5. ARROW FUNCTIONS: '(product => { ... })' the modern, sleek way to write functions.
+        // ARROW FUNCTIONS: '(product => { ... })' the modern, sleek way to write functions.
         // We are looping through every product in our list.
         products.forEach(product => {
             const productElement = document.createElement('div');
             productElement.classList.add('store__product');
             productElement.setAttribute('data-id', product.id);
 
-            // 6. TEMPLATE LITERALS: The backticks `` allow us to inject variables
+            // TEMPLATE LITERALS: The backticks `` allow us to inject variables
             // like ${product.name} directly into a string of HTML.
             productElement.innerHTML = `
                 <img src="${product.image}" alt="${product.name}" class="store__product-image">
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         attachAddToCartListeners();
     }
 
-    // Function to attach event listeners to "Add to Basket" buttons
+    // FUNCTION to attach event listeners to "Add to Basket" buttons
     function attachAddToCartListeners() {
         document.querySelectorAll(".store__add-to-cart").forEach(button => {
             button.addEventListener("click", function () {
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (existingProduct) {
                     existingProduct.quantity++;
                 } else {
-                    // 7. OBJECT CREATION: We are grouping individual pieces of info
+                    // OBJECT CREATION: We are grouping individual pieces of info
                     // (id, name, price) into one single 'product' package.
                     const product = {
                         id: productId,
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Function to update the cart in localStorage and update the checkout count
+    // FUNCTION to update the cart in localStorage and update the checkout count
     function updateCart() {
         localStorage.setItem('cart', JSON.stringify(cart)); 
         // 8. REDUCE: A powerful method to boil an entire array down to a single number (total quantity).
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
         updateCartPreview(); 
     }
 
-    // Function to update the mini-basket preview
+    // FUNCTION to update the mini-basket preview
     function updateCartPreview() {
         cartItemsElement.innerHTML = ''; 
         let total = 0;
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <button class="header__cart-item-remove">X</button>
             `;
 
-            // Nested Event Listeners: Attaching logic to buttons that were JUST created!
+            // Nested Event Listeners: Attaching logic to buttons that were JUST created.
             li.querySelector('.header__cart-item-increase').addEventListener('click', () => {
                 item.quantity++;
                 updateCart();
@@ -138,14 +138,14 @@ document.addEventListener("DOMContentLoaded", function () {
         cartTotalElement.textContent = total.toFixed(2);
     }
 
-    // Function to clear the basket
+    // FUNCTION to clear the basket
     function clearCart() {
         cart = [];
         updateCart();
         showToast(`Cleared entire basket`, 'error'); 
     }
 
-    // Function to show toast notifications
+    // FUNCTION to show toast notifications
     function showToast(message, type) {
         const toast = document.createElement('div');
         toast.className = `toast toast--${type} toast--visible`;
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         toastContainer.appendChild(toast);
 
-        // 9. ASYNC BEHAVIOR (Promises/Timeouts): setTimeout tells the browser 
+        // ASYNC BEHAVIOR (Promises/Timeouts): setTimeout tells the browser 
         // "wait 3 seconds, THEN run this code." It doesn't block other code from running.
         setTimeout(() => {
             toast.classList.remove('toast--visible');
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cartPreviewElement.style.display = 'none';
     });
 
-    // 11. INITIALIZATION: Running the functions to set everything up on page load.
+    // INITIALIZATION: Running the functions to set everything up on page load.
     renderProducts(products);
     updateCart();
 

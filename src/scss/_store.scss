@@ -1,0 +1,89 @@
+// STORE GRID STYLING
+// - - - - - - - - - - - - - - - - - - - - - - - - -
+// Note for my future self. This was your first time using SCSS. 
+// Use the commentary here in case you forget details.
+
+// 1. THE MAIN ANCHOR: This is the "base" of your store page.
+.store {
+  padding: 7.5rem 2rem 10rem 2rem;
+  background-color: #f8f8f8;
+
+  // 2. GRID MAGIC: This creates a responsive layout that automatically 
+  // calculates how many columns can fit. It's much smarter than regular lists.
+  &__product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  // 3. COMPONENT BLOCK: The "&" grabs ".store", so this becomes ".store__product"
+  &__product {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+    // 4. SUFFIX SHORTCUTS: These "&-" selectors are a lifesaver.
+    // They compile to ".store__product-image", ".store__product-name", etc.
+    // It keeps all the internal parts of the product card together visually.
+    &-image {
+      width: 100%;
+      height: auto;
+      max-height: 150px;
+      object-fit: contain; // Ensures images don't look squished
+    }
+
+    &-name {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+    }
+
+    &-price {
+      color: #555;
+      margin: 0.5rem 0;
+    }
+
+    &-description {
+      color: #777;
+      font-size: 0.9rem;
+      margin: 0.5rem 0;
+    }
+
+    // 5. NESTING WITHIN NESTING: This targets the button inside the product card.
+    .store__add-to-cart {
+      background: #262626;
+      position: absolute;
+      bottom: 20px;
+      left: 10%;
+      width: 80%;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.5s ease-in-out;
+      font-size: 0.9rem;
+
+      // 6. PSEUDO-STATE: The "&:hover" says "Change me when the mouse touches me."
+      &:hover {
+        background: #a60000;
+      }
+    }
+  }
+}
+
+// 7. EXTERNAL TWEAKS: Sometimes we define extra rules outside the main block.
+// This centers the grid on the page.
+.store__product-list {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// 8. RELATIVE POSITIONING: This is important! You forget how this works time and time again.
+// It tells the absolute-positioned "Add to Basket" button to stay INSIDE this card.
+.store__product {
+  position: relative;
+  border-radius: 8px;
+  padding-bottom: 60px;
+}
