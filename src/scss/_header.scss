@@ -66,7 +66,15 @@
       border-radius: 8px;
       padding: 1rem;
       width: 375px;
+      max-width: 375px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+      // 6. INLINE MEDIA QUERY:
+      // This targets screens smaller than 445px and overrides the width.
+      @media (max-width: 445px) {
+        width: 270px; 
+        right: -30px;
+      }
 
       .header__cart-items {
         list-style: none;
@@ -74,7 +82,13 @@
         margin: 0;
         max-height: 150px;
         overflow-y: auto;
+
+        @media (max-width:445px){
+          justify-content:center;
+          align-items:center;
+        }
       }
+      
 
       .header__cart-total {
         font-weight: bold;
@@ -127,6 +141,16 @@
 
   &-name {
     flex-grow: 1;
+    min-width: 0;
+
+    @media (max-width:445px){
+      flex: 1 1 300px;
+      max-width: 200px;
+      display: block;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      white-space: normal;
+    }
   }
 
   &-quantity, &-price {
